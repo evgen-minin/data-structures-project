@@ -14,5 +14,9 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.stack.top.next_node.data, "data1")
 
 
+    def test_pop(self):
+        self.stack = Stack()
+        self.assertIsNone(self.stack.pop())
+
 if __name__ == '__main__':
     unittest.main()
