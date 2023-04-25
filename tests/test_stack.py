@@ -13,10 +13,20 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.stack.top.data, "data2")
         self.assertEqual(self.stack.top.next_node.data, "data1")
 
-
     def test_pop(self):
         self.stack = Stack()
         self.assertIsNone(self.stack.pop())
+
+        self.stack.push("data1")
+        self.stack.push("data2")
+        self.assertEqual(self.stack.pop(), "data2")
+        self.assertEqual(self.stack.pop(), "data1")
+        self.assertIsNone(self.stack.pop())
+
+    def test_str(self):
+        self.stack = Stack()
+        self.assertEqual(str(self.stack), "")
+
 
 if __name__ == '__main__':
     unittest.main()
