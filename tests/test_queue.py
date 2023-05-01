@@ -6,8 +6,10 @@ from src.queue import Queue
 
 class TestQueue(unittest.TestCase):
 
-    def test_enqueue(self):
+    def setUp(self):
         self.queue = Queue()
+
+    def test_enqueue(self):
         self.queue.enqueue("data1")
         self.queue.enqueue("data2")
         self.queue.enqueue("data3")
@@ -17,9 +19,17 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(self.queue.tail.next_node, None)
 
     def test_str(self):
-        self.queue = Queue()
         self.assertEqual(str(Queue()), "")
         self.queue.enqueue("data1")
         self.queue.enqueue("data2")
         self.queue.enqueue("data3")
         self.assertEqual(str(self.queue), "data1\ndata2\ndata3")
+
+    def test_dequeue(self):
+        self.queue.enqueue("data1")
+        self.queue.enqueue("data2")
+        self.queue.enqueue("data3")
+        self.assertEqual(self.queue.dequeue(), 'data1')
+        self.assertEqual(self.queue.dequeue(), 'data2')
+        self.assertEqual(self.queue.dequeue(), 'data3')
+        self.assertIsNone(self.queue.dequeue(), None)
